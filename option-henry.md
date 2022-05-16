@@ -1,23 +1,24 @@
 # Outline 
 1. Basic 1 
-- stock vs option
-- contract, premium, strike price
-- ITM, ATM, OTM
-- intrinsic vs extrinsic value 
-- payoff chart, black scheles chart, time decay chart
-- B.E., moneyness (profitability)
+- stock vs option (module 1:1-2)
+- contract, premium, strike price (module 1:3-4 + module 3:0-1,4)
+- ITM, ATM, OTM (module 2:8)
+- intrinsic vs extrinsic value (module 1:5)
+- payoff chart, black scheles chart, time decay chart (module 3:2 + module 4:5)
+- B.E., moneyness (profitability) (module 1:7 + module 3:3,5 )
     - when to use option, future, CFD, and stock 
 2. Basic 2
-- volume, open interest
-- bid/ask spread 
-- IV 
-- delta, theta
-- gamma, vega
+- volume, open interest 
+- bid/ask spread (module 4:6)
+- IV (module 1:6 + module 7:5-6)
+- greek (module 3:6)
+- delta, theta (module 4:1,3)
+- gamma, vega (module 4:2,4)
 - dividend calendar
-- fundamental analysis: to select good stock for all possible ways  
+- fundamental analysis: to select good stock for all possible ways (module 2:0-1)
     - dividend payoff 
     - ROE
-- technical analysis: to get used to its behavior not to foresee  
+- technical analysis: to get used to its behavior not to foresee (module 2:2-7)
     - MA
     - RSI, Bollinger
 
@@ -55,8 +56,19 @@
         - short box 
         - covered strangle
 
-
 ![Payoff Chart](https://www.newtraderu.com/wp-content/uploads/2021/10/Snip-Option-Strategy-CheatSheet.pdf-Personal-Microsoft-Edge-1024x720.png)
+
+4. Getting started (module 5)
+- stock + option mindset: put stocks to work (module 5: 0-3)
+- weekly monthly yearly (module 5:5)
+- ROI (module 5:6)
+- entry (module 2:8 + module 5:4)
+- exit (module 2:9 + module 5:7)  
+
+5. Module 6: Why writing put?
+6. Module 7: wheel + straddles + strangles
+7. Module 8: small accout secret (spread + condor)
+
 ---
 
 ### Long Call: Buy Call 
