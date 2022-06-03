@@ -10,10 +10,18 @@ ex2. By given stock = 200k, strike 260k with bull-exploded expection. Now, stock
 
 `premium`: price paid to acquire option **contract**, and determined by **intrinsic** and **extrinsic** value
 `contract`: obligation to buy/sell at given price on specific date
+    `call option` contract giving the right to **buy** 100x of underlying stock with a specified price and time. **Market Optimisitc**
+    `put option` contract giving the right to **sell** 100x of underlying stock with a specified price and time. **Market Pressimistic**
+
+
 `intrinsic value`: ITM - how much you stock passes strike
 `extrinsic value`: factor outside like time(expiry date), IV
 `expiry`: contract date; the more time, the more value
-`IV`: price fluctuation
+`IV`: price fluctuation 
+- how much things moving up and down within given period
+- the most influential to option pricing --> contract's fee is calculated based on IV and other factors
+
+**Note** `bell curve` ~ probability with normal distribution is the key of our analysis
 
 ex1. Given stock 162 and strike 150, intrinsic value = 162 - 150 = 12
 ex1. option 1month is worth less than option 3months
@@ -28,9 +36,39 @@ ITM/Put: strike > stock
 
 
 - payoff chart, black scheles chart, time decay chart (module 3:2 + module 4:5)
-- B.E., moneyness (profitability) (module 1:7 + module 3:3,5 )
-    - when to use option, future, CFD, and stock 
-2. Basic 2
+`Payoff`
+
+- B.E., moneyness (profitability) (module 1:7 + module 3:3,5 ) ... when to use option, future, CFD, and stock
+
+! Option buyers essentially **gains** less than stock investors, but more **ROI** percentage
+
+> ex. Given AAPL at 100 and **105** call for 5, what are B.E. and return when AAPL at 120?
+>  
+> **As stock buyer**, 
+> - Initially, pay 100 (underlying price) x 100 upfront = **10,000** -- investment
+> - B.E. point = entry point = **100**
+> - At 120, return = 120 - B.E. = 120 - **100** = 20
+> - return = 20 * 100 = 2,000 
+> - RR = return / risk = 2,000 / 10,000 = 0.2
+> - Gain = (100 --> 120) = 20%
+>
+> **As option buyer**,
+> - Initially, pay 5 (contract fee) x 100 upfront = **500** -- investment
+> - B.E. point = entry point + investment = **105** + **5** = 110
+> - At 120, 120 - B.E. = 120 - **110** = 10 
+> - return = 10 * 100 = 1,000
+> - RR = return / risk = 1,000 / 500 = 2 
+> - Gain = (5 --> 10) = 100%
+> 
+>
+> Thus, at any given point after B.E., option buyers will gain 10 less than stock investors, but significantly less risk
+
+`B.E` 
+    `B.E. of Call option` = strike + contract's fee 
+    `B.E. of Put option` = strike + contract's fee
+    
+
+
 - volume, open interest 
 - bid/ask spread (module 4:6)
 - IV (module 1:6 + module 7:5-6)
@@ -45,7 +83,7 @@ ITM/Put: strike > stock
     - MA
     - RSI, Bollinger
 
-3. Strategy 
+1. Strategy 
 - buy call/put and thinking system (payoff chart, B.E., probability, risk mgmt)
 - sell call/put and thinking system (payoff chart, B.E., probability, risk mgmt)
 - know names and its synonyms 
@@ -81,16 +119,16 @@ ITM/Put: strike > stock
 
 ![Payoff Chart](https://www.newtraderu.com/wp-content/uploads/2021/10/Snip-Option-Strategy-CheatSheet.pdf-Personal-Microsoft-Edge-1024x720.png)
 
-4. Getting started (module 5)
+3. Getting started (module 5)
 - stock + option mindset: put stocks to work (module 5: 0-3)
 - weekly monthly yearly (module 5:5)
 - ROI (module 5:6)
 - entry (module 2:8 + module 5:4)
 - exit (module 2:9 + module 5:7)  
 
-5. Module 6: Why writing put?
-6. Module 7: wheel + straddles + strangles
-7. Module 8: small accout secret (spread + condor)
+4. Module 6: Why writing put?
+5. Module 7: wheel + straddles + strangles
+6. Module 8: small accout secret (spread + condor)
 
 ---
 
