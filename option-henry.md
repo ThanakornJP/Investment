@@ -1,9 +1,32 @@
 # Outline 
 1. Basic 1 
 - stock vs option (module 1:1-2)
-- contract, premium, strike price (module 1:3-4 + module 3:0-1,4)
-- ITM, ATM, OTM (module 2:8)
-- intrinsic vs extrinsic value (module 1:5)
+- strike price (module 1:3-4 + module 3:0-1,4)
+ex1. By given stock = 200k, strike 210k with bull expection. Now, stock 200k->250k, then profit = 250-210 = 40k x 100 = 4m
+
+ex2. By given stock = 200k, strike 260k with bull-exploded expection. Now, stock 200k->250k, then profit = 250-260 = -10k = 0 #profit could not get below 0 
+
+- premium, contract, intrinsic/extrinsic value (module 1:4,5)
+
+`premium`: price paid to acquire option **contract**, and determined by **intrinsic** and **extrinsic** value
+`contract`: obligation to buy/sell at given price on specific date
+`intrinsic value`: ITM - how much you stock passes strike
+`extrinsic value`: factor outside like time(expiry date), IV
+`expiry`: contract date; the more time, the more value
+`IV`: price fluctuation
+
+ex1. Given stock 162 and strike 150, intrinsic value = 162 - 150 = 12
+ex1. option 1month is worth less than option 3months
+
+- ITM, ATM, OTM (module 1:7 + module 2:8)
+
+`ATM`: strike price =~ stock price 
+OTM/Call: strike > stock
+OTM/Put: string < stock
+ITM/Call: strike < stock
+ITM/Put: strike > stock
+
+
 - payoff chart, black scheles chart, time decay chart (module 3:2 + module 4:5)
 - B.E., moneyness (profitability) (module 1:7 + module 3:3,5 )
     - when to use option, future, CFD, and stock 
