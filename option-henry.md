@@ -179,7 +179,7 @@
 # 6. Module 8: small accout secret (spread + condor)
 
 
-# Reference
+# Appendix: Strategy in Action
 
 ## Long Call: Buy Call 
 - position = 1
