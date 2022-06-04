@@ -116,6 +116,26 @@
 
 
 ## volume, open interest, bid/ask spread (module 4:6)
+bid = buyer's voice
+ask = seller's voice
+mark = middle point of bid and ask
+`spread` = bid-ask
+- stock < $10, spread < 0.2
+- stock < $30, spread < 0.35
+- stock < $50, spread < 0.5
+- stock < $100, spread < 0.75
+- stock < $500, spread < 1
+- make it relate to premium you collect. Don't let spread more than 20% of premium
+
+open interest = 
+volume = liquid
+
+- trade only tight spread underlying option
+
+market cap
+employee size 
+
+
 
 ## IV (module 1:6 + module 7:5-6)
 `IV`: price fluctuation 
