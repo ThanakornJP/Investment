@@ -114,6 +114,15 @@
 >
 > Thus, at any given point after B.E., option buyers will gain 10 less than stock investors, but significantly less risk
 
+## Early assignment, pin risk (module 5:2)
+early execute the contract with remaining time
+
+> stock @ 120, strike 110 expiring in a month
+> intrinsic value = 120 - 110 = 10
+> options's worth = 15 bcoz more time and intrinsic value 
+> then, you can decide to close the contract early
+
+`pin risk` risk of option seller holding option that expires barely ITM as market closes
 
 ## volume, open interest, bid/ask spread (module 4:6)
 bid = buyer's voice
@@ -253,7 +262,6 @@ employee size
 - affect less for short-term
 
 
-
 ## dividend calendar
 `dividend payoff`
 
@@ -297,11 +305,36 @@ employee size
 - `long call`: buy call, pay to gain when stock rises
 - `long put`: buy put, pay to gain when stock falls
 - `short put`: sell put, losing gain when stock falls
-- `short call`/`naked call`: sell ITM/OTM call, losing gain when stock goes up 
+- `short call`/`naked call`: sell ITM/OTM call, losing gain when stock goes up -- don't use this (too risky)
 
 ## Intermediate strategy: option + stock
 - `synthetic call`: buy put + buy stock, pay to gain when stock rises 
-- `covered call`: sell OTM call + buy stock, losing gain when stock falls 
+- `** covered call **`: sell OTM call + buy stock, losing gain when stock falls 
+  - `idea` buy lovely stock and sell in **every week** to collect income
+  - `execution` buy stock + sell OTM call option in 1 transaction
+  - `expect` high theta (less time), 20 delta, 2 S.D.
+  - you need to have 100 shares to sell a proper covered call otherwise unlimited risk which is prohibited 
+  - upside: you collect premium upfront to hedge your bet: you own 100 shares bcoz it's highly likely to go up; however, if it goes wrong, you lose less bcoz of premium collected upfront
+  - downside: you can't sell at higher price
+  - 
+
+> Example, on Monday, buy AAPL @ 100 + sell 110 call for $3
+> then, new cost basis = $97
+> Friday, AAPL 100 -> 105 
+> now, 110 call contract is void meaning you keep this stock
+> next Monday, **repeat** with sell 115 call for $5
+> then, new cost basis = $92, potential profit = 105-92 = 13*100 = 1,300
+> Friday, AAPL 105 --> 110
+> now, 115 call contract is void again.
+
+
+> Example, stock @ 78, sell 80 call for 15,
+> new cost basis = 63
+> maximum gain = 15 + (80-78) = 17
+> on Friday, stock 78->80
+> 80 call is valid, so you lose 100 shares 
+> actual gain = 80-78 = 2 .. still credited
+
 - `covered put`/`married put`: sell stock + sell ATM/OTM put, losing gain when stock rises
 - `protective call`/`synthetic long put`: sell stock + buy ATM call, pay to gain when stock falls
 
@@ -326,6 +359,8 @@ employee size
 - short box 
 - covered strangle
 
+## Advance strategy: option + time metric
+- `leap`:
 
 ![Payoff Chart](https://www.newtraderu.com/wp-content/uploads/2021/10/Snip-Option-Strategy-CheatSheet.pdf-Personal-Microsoft-Edge-1024x720.png)
 
