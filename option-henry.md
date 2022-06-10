@@ -8,6 +8,7 @@
 
 
 
+
 # 1. Basic 
 > **Notes**
 > 
@@ -26,6 +27,8 @@
 > `Delta` is the risk manager; With option, you can pre-determine how much risk you're gonna bet and how much benefit you're gonna take upfront
 > 
 > `weekly option advantages more to option seller, especialy non-earning week`
+> 
+> `don't get in hype stock` like what we see hype in youtube or Jim Cramer said since this 
 
 
 ## `Random walk down`, stock is supposed to move sideway and we will never know up/down
@@ -40,6 +43,31 @@
 
 > Example, By given stock = 200k, strike 260k with bull-exploded expection. Now, stock 200k->250k, then profit = 250-260 = -10k = 0 #profit could not get below 0 
 
+> Example, stock @ 100, covered call 110 for 5 
+> 
+> 100->100, 
+> - option: get 5 
+> - stock: get nothings
+> 
+> 100->110, 
+> - option: get (110-100) + 5 = 15
+> - stock: get 110-100 = 10
+> 
+> 100->90,
+> - option: lose (100-90) + 5 = 5
+> - stock: lose 100-90 = 10 
+> 
+> 100->120,
+> - option: get 120 - BE = 120 - (Strike + Premium) + 5 = 120 - 110 + 5  = 15
+> - stock: get 120-100 = 200
+> 
+> Hence, we lose opportunity getting unlimited profit, but we have better **risk management** with premium collected upfront as our cusion
+
+
+
+
+
+
 ## Premium, contract, intrinsic/extrinsic value (module 1:4,5)
 
 `premium`: 
@@ -48,6 +76,7 @@
 
 
 `contract`: obligation to buy/sell at given price on specific date
+- expire every **friday** or **3rd friday each month**
 - `call contract` giving the right to **buy** 100x of underlying stock with a specified price and time. **Market Optimisitc**
 - `put contract` giving the right to **sell** 100x of underlying stock with a specified price and time. **Market Pressimistic**
 
@@ -122,7 +151,7 @@ early execute the contract with remaining time
 > options's worth = 15 bcoz more time and intrinsic value 
 > then, you can decide to close the contract early
 
-`pin risk` risk of option seller holding option that expires barely ITM as market closes
+`pin risk` risk of option seller holding option that expires barely ITM as market closes 
 
 ## volume, open interest, bid/ask spread (module 4:6)
 bid = buyer's voice
@@ -136,11 +165,20 @@ mark = middle point of bid and ask
 - stock < $500, spread < 1
 - make it relate to premium you collect. Don't let spread more than 20% of premium
 
-open interest = 
-volume = liquid
+`open interest` 
+- number of options/futures contracts **being held** by traders in active positions 
+- **active contracts**
+
+
+`volume` 
+- number of options/futures contracts **traded in given period**
+- **liquidity**
+- indicates how often shares change hands between buyers and sellers
+
+
+
 
 - trade only tight spread underlying option
-
 market cap
 employee size 
 
@@ -262,18 +300,71 @@ employee size
 - affect less for short-term
 
 
+## Order, sell-to-open
+`sell to open` open the position with selling to the market
+
+## Premium vs Strike 
+the more farther OTM, the less likely to be ITM, the less premium collectable
+
+
+## Weekly, monthly, yearly, 
+`weekly` least risk (from news and earnings), least benefit
+`monthly` moderate risk (from news and earnings), moderate benefit
+`yearly` most exposure, most benefit
+
+4 weekly premium collected might be equal to 1 monthly premium collected.
+
+`Goldman Scahs` trade 1-3 month option
+
+
+## Return, Entry, Exit
+- Avg return from stock market = 9% (Buffet makes 20%)
+
+`Entry strategy` sell to open with strategy
+`Exit strategy` no the best existed, just tailor to suite your will
+  
+`Annualized return` refractor your return over given period to entire year without compounding effect
+
+> Example, return 1% regarding 1 month, then annualized return = 1% x 12 = 12%
+
+
+****
+****
+****
+> Example, AAL @ 12 in July, our blueprint from July to October is
+> AAL is good for those who has little money
+> ![AAL](images/AAL.png)
+> buy at 10 (low), keep selling call and put
+> ![AAL Execution](images/AAL-out.png)
+> collect $360 based on $1200 investment in 3 month
+
+
 ## dividend calendar
 `dividend payoff`
 
 ## fundamental analysis: to select good stock for all possible ways (module 2:0-1)
 `ROE`
 
+---
+
+`P/E`
+`Sales growth qtr over qtr`
+`EPS growth qtr over qtr`
+`Sales growth next 5 years`
+`EPS growth next 5 years`
+`Return on Assets`
+
+
+
+
 ## technical analysis: to get used to its behavior not to foresee (module 2:2-7)
 `MA`
 
 `RSI`
+as long as it stays around 50
 
 `Bollinger`
+
 
 ## Quiz
 > Exam, NIO stock is trading at $39 per share. A $40 call option for 1-month out costs $5.63. What is the **breakeven** price for your call option? 
@@ -304,7 +395,27 @@ employee size
 ## Beginner strategy: option only
 - `long call`: buy call, pay to gain when stock rises
 - `long put`: buy put, pay to gain when stock falls
+  - max gain = 0 since stock can go negative
+  - **use case**
+    - (1) to speculate trash stock like oil
+    - (2) to protect from downside
+    - (3) to hedge positioning
+  
+> Example, stock @ 120, long 100 put for 3 
+> 120 -> 50, 
+> - option (long put) gains = 100 - 50 = +50
+> - stock loses = 120 - 50 = -70
+> - so, you loses 50 - 70 = -20
+
+> Example, stock @ 100, long 100 put for 2
+> 100 -> 0
+> option gains = (100-0)-2
+
+
 - `short put`: sell put, losing gain when stock falls
+  - same as insurance policy ~ `Buffet strategy`
+  - `idea` it's non-losing strategy because you collected premium upfront and buy prefered stock at lower price 
+
 - `short call`/`naked call`: sell ITM/OTM call, losing gain when stock goes up -- don't use this (too risky)
 
 ## Intermediate strategy: option + stock
@@ -314,9 +425,8 @@ employee size
   - `execution` buy stock + sell OTM call option in 1 transaction
   - `expect` high theta (less time), 20 delta, 2 S.D.
   - you need to have 100 shares to sell a proper covered call otherwise unlimited risk which is prohibited 
-  - upside: you collect premium upfront to hedge your bet: you own 100 shares bcoz it's highly likely to go up; however, if it goes wrong, you lose less bcoz of premium collected upfront
+  - upside: you collect premium upfront to hedge your bet: you own 100 shares bcoz it's highly likely to go up; however, if it goes wrong, you lose less bcoz of premium collected upfront. More importantly, you earn from option's premium and stock appreaciation (gap between price)
   - downside: you can't sell at higher price
-  - 
 
 > Example, on Monday, buy AAPL @ 100 + sell 110 call for $3
 > then, new cost basis = $97
@@ -377,6 +487,7 @@ employee size
 
 
 # Appendix: Strategy in Action
+`see their behaviour in 1-month and 3-month chart`
 
 ## Long Call: Buy Call 
 - position = 1
@@ -392,5 +503,39 @@ employee size
 - risk/reward = limited/unlimited
 - B.E. = stock price - call premium
 ![Payoff Chart](https://www.chittorgarh.com/images/screenshots/protective-call-options-strategy-payoff-chart.png)
+
+
+## Covered call
+- best fit with low volatality bcoz we can keep selling everyweek without risking exposure like AAL
+  
+# Appendix: Volatality analysis
+- high vol --> `good for selling option`
+  - airline: UAL, AAL, LUV
+- avg vol
+- low vol
+
+# Appendix: Tastyworks
+`P50` probability of making 50% of max potential profit
+`POP` probability of profit
+`EXT` extrinsic value based on mid price (For OTM, mid price = EXT)
+`ITM%` percent of strike being ITM 
+`DTE` # days to expiration
+
+# Appendix: Hands on
+- weekly
+- bid/ask makes sense to ROI
+- trading at near its high not low
+- volume > 100 (50 is acceptable)
+- open interest, the more the better
+- IV > 70
+- ATR is the key  ... the average/farthest movement to get OTM safer
+- always good RR but not too agressive
+
+- use cases
+  - spike after IPO, sell put for their adjustment
+  - sideway, sell put/call along 
+
+# Appendix: Journal
+- 8-Jun: PLTR @ 9, sell 6/10 exp. put 8.5 , for 0.5 
 
 
