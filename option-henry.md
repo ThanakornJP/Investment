@@ -692,6 +692,8 @@ Note: premium will be less than long straddle because of OTM
 `idea` buy or sell equal amount of options on the same stock but different strike or expiry
 `Henry` diff strike, same expiry
 
+![Spread Payoff](images/spread%20payoff.png)
+
 
 #### 1. `bull spread` / `bull call debit spread` / `call debit spread`/`call debit spread` / `bull put spread` - profit from bull
    
