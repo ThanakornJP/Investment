@@ -105,7 +105,6 @@
 ## ITM, ATM, OTM (module 1:7 + module 2:8)
 
 `ATM`: strike price =~ stock price 
-
 `OTM`
 - OTM/Call: strike > stock
 - OTM/Put: string < stock
@@ -113,6 +112,9 @@
 `ITM`
 - ITM/Call: strike < stock
 - ITM/Put: strike > stock
+
+`CTM`: strike price that closes to the money and make proper profit  
+`FTM`: strike price that is farther OTM
 
 
 ##  payoff chart, black scholes chart, time decay chart (module 3:2 + module 4:5)
@@ -684,17 +686,65 @@ Note: premium will be less than long straddle because of OTM
 
 
 ## Spread / Vertical
-*** Weekly Strategy / Small Account Strategy ***
+*** Small Account Strategy ***
+*** 3 diversified positions max. ***
+
 `idea` buy or sell equal amount of options on the same stock but different strike or expiry
 `Henry` diff strike, same expiry
 
-Type
-- `bull spread` profit from bull 
-- `bear spread` profit from bear
-- `credit spread` spend less than collect premium ~ collect money
-- `debit spread` spend more than collect premium  ~ spend money
+
+#### 1. `bull spread` / `bull call debit spread` / `call debit spread`/`call debit spread` / `bull put spread` - profit from bull
+   
+   - `Config` buy CTM call + sell OTM call on same expiry
+   - `idea` sell OTM call to help finance buy ATM call bcoz buy ATM call is expensive caused by high delta (high chance of ITM ~ success)
+   - `win condition` stock >= strike buy
+   - `return` max = strike sell - strike buy - premium paid
+   - `risk` max = premium paid
+   - `BE` strike buy + premium paid
+
+![Bull Call Spread Payoff](images/bull%20call%20spread.png)
+![Call Debit Spread Entry](images/call%20debit%20spread%20entry.png)
+
+#### 2. `bear spread`/`bear call debit spread`/`short call spread`/`call credit spread` profit from bear
+
+*** Weekly Strategy ****
+
+   - `General config - High return` sell CTM call + buy OTM call
+   - `Henry - Risk managed`  sell OTM call + buy farther OTM call
+     - to lower our risk because we move to OTM where buy leg will be cheaper
+   - `return` max = premium collected
+   - `risk` max = (strike buy - strike sell) - premium collected
+   - `BE` strike sell + premium collected
+
+> Example, sell 105 call for 2 + buy 110 call for 1
+> then, net credit = 1
+
+![Bear Call Spread](images/bear%20call%20spread.png)
+![Call Credit Spread](images/call%20credit%20spread%20entry.png)
+
+#### 3. `credit spread`/`bear call spread`/`put credit spread` spend less than collect premium ~ collect money
+
+*** Weekly Strategy - Henry favorite ****
+*** for robust stock ***
+*** for stock you trust to hold long term ***
+
+  - `Config` sell CTM put (to get credit) + buy OTM put (hedge sell leg from downside)
+  - `Henry - Risk managed`  sell OTM put + buy farther OTM put
+  - `max risk` strike sell - strike buy -  premium collected
+  - `RR`  premium collected / (strike sell - strike buy)
 
 
+> Example, sell 100 put for 2 + buy 95 put for 1, stock @ 105 -> 97, net credit = 2 - 1 = 1 
+> Then, lose (100-97) - premium collect = 3 - 1 = 2
+
+![Put Credit Spread](images/put%20credit%20spread%20entry.png)
+
+#### 4. `bear put debit spread` /  `bear put spread` / `debit spread`  spend more than collect premium  ~ spend money
+maximize profit from beer market bet while minimizing loss 
+
+`Config` buy CTM put + sell FTM put
+
+![Bear Put Spread Payoff](images/bear%20put%20spread%20payoff.png)
 
 
 # Appendix: Motto
