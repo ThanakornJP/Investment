@@ -77,8 +77,20 @@
 
 `contract`: obligation to buy/sell at given price on specific date
 - expire every **friday** or **3rd friday each month**
-- `call contract` giving the right to **buy** 100x of underlying stock with a specified price and time. **Market Optimisitc**
-- `put contract` giving the right to **sell** 100x of underlying stock with a specified price and time. **Market Pressimistic**
+- `call contract`  
+  - buyer: giving the right to **buy** 100x of underlying stock with a specified price and time. 
+    - **Market Optimisitc** they will buy at agreed price (lower) to sell at current price
+  - seller: obligated to **sell** underlying at strike price
+    - lose shares if assigned
+- `put contract` 
+  - buyer: giving the right to **sell** 100x of underlying stock with a specified price and time. 
+    - **Market Pessimistic** they will buy at current price (lower) to sell at agree price
+  - seller: obligated to **buy** underlying at strike price
+    - get shares if assigned
+
+
+
+
 
 `intrinsic value`: ITM - how much you stock passes strike
 
@@ -189,11 +201,45 @@ employee size
 - how much things moving up and down within given period
 - the most influential to option pricing --> contract's fee is calculated based on IV and other factors
 
+`historical volatility` - past
+- based on past data
+- 21-day period is most famous; 10, 50 are alternative for shorter and longer term
+- it might 
+`implied volatility` - future
+- measure of how much stock goes up and down
+- what you get paid for
+- what trader expect going forward
+- what option is pricing in for period going forward
+
+`statistics`
+- 52-wk IV high
+- 52-wk IV low
+- current IV percentile
+- 52-wk HV high
+- 52-wk HV low
+- current HV percentile
+- IV
+
+`Put/Call Ratio (PCR)` = Put volume / Call volume
+- PCR < 1: more call 
+
+
+> Example, P/C Ration = 0.43 = 43% more put than call
+
+`Event`
+- Earning: IV goes high
+- FDA (food & drug): phamarceutical/food chain IV goes high
+- FED (interest): bank/finance IV goes high
+
+> Example, historical volatility (21d) = 150, implied volatality (7d) = 95, meaning this is good opportunity to buy option
 
 
 ## Greek (module 3:6), delta, theta (module 4:1,3), gamma, vega (module 4:2,4)
 
 `Delta`: how much option's price changed respecting $1 change of underlying 
+
+![Delta Line for Call and Put](images/Delta%20Line.png)
+
 - get us better understanding of our directional exposure
 - the higher delta, the higher exposure
   - deep ITM, delta will be extremely high 
@@ -354,7 +400,8 @@ the more farther OTM, the less likely to be ITM, the less premium collectable
 `EPS growth next 5 years`
 `Return on Assets`
 
-
+`FCF Yield` = Free cash flow / Market cap
+- compare FCF ratio in the same industry like AAPL and MSFT
 
 
 ## technical analysis: to get used to its behavior not to foresee (module 2:2-7)
@@ -393,8 +440,10 @@ as long as it stays around 50
 
 
 ## Beginner strategy: option only
-- `long call`: buy call, pay to gain when stock rises
-- `long put`: buy put, pay to gain when stock falls
+- `buy call`,`long call`: buy call, pay to gain when stock rises
+
+
+- `buy put`,`long put`: buy put, pay to gain when stock falls
   - max gain = 0 since stock can go negative
   - **use case**
     - (1) to speculate trash stock like oil
@@ -412,9 +461,39 @@ as long as it stays around 50
 > option gains = (100-0)-2
 
 
-- `short put`: sell put, losing gain when stock falls
+> Example, You expect a stock trading at $35 to fall. You believe it could be as low as $28 in the next week. You decided to buy a $32 put for $1.57. How much profit do you earn if the stock falls to $28?
+> stock @ 35, long 32 put for 1.57
+> 35 -> 28, then 
+> (1) 32-28 = 4 x 100 = 400
+> (2) 400 - (1.57 x 100) = 243
+
+- `covered put`,`protected put`: sell put covered by short position in stock
+- `short put`,`naked put`: sell put without protection
+  - `mechanism`
+    - if stock rise, secure premium collected
+    - if stock fall, you need to buy stock at strike price
+   
+  - losing gain when stock falls
+  - `max risk` = strike price - premium collected
   - same as insurance policy ~ `Buffet strategy`
-  - `idea` it's non-losing strategy because you collected premium upfront and buy prefered stock at lower price 
+  - `idea` it's non-losing strategy because you collected premium upfront and buy prefered stock at lower price
+  - `benefit`
+    - better entry price (cheaper) of your preferred stock, so called `cost reduction`
+    - generate income when it goes sideway, upside, and even slightly down
+  - `expect` 
+    - sell put on high volotality (high premium) stock
+    - sell put on high free cash flow stock
+    - sell put on 1-month term is better than 1-Y term
+
+![Payoff Chart](images/Payoff%20Table%20-%20Sell%20Put%20with%20FCF%20Yied.png)
+StdDev = risk 
+Compound Return = return
+Sharp raio = risk / return
+
+![Sell Put vs Covered Call](images/Sell%20Put%20vs%20Covered%20Call.png)
+overwriting = covered call
+
+
 
 - `short call`/`naked call`: sell ITM/OTM call, losing gain when stock goes up -- don't use this (too risky)
 
@@ -488,8 +567,115 @@ as long as it stays around 50
 
 # Appendix: Strategy in Action
 `see their behaviour in 1-month and 3-month chart`
+`sell 25-35 delta` ~ yield the best sharp ratio
+`collect premium that yield 1% a week`
+`low delta = low risk when selling`
 
-## Long Call: Buy Call 
+## The Wheel / Tripple Income Strategy
+*** Weekly Strategy ****
+
+`idea` **selling puts** to get in, and **selling call** to get out
+- Selling Puts until assignment (got stock) → wait to see direction of its movement → Selling Calls until assignment (lose stock) → Repeat!
+- The more times you collect premium on the put side the better!
+  
+`strike idea`
+- strike of covered call: based on your valuation
+- strike of naked put: anticipating premium based on proper RR 
+
+`condition` --> make sure you diversify
+- low price stock
+- high volatility 
+- good stock
+  - have strong support
+  - stable movement
+  - high volume
+- fantastic financial statement
+  - good cash flow
+- 
+> Example, AAL
+
+- sell cash secured puts to collect premium on stock that we're holding for long term
+`goal` trade and be as agressive as possible without being assigned
+
+`recovery`
+when you sell put but price falls deep OTM 
+> Example, stock @ 110, sell 100 put for 1, then 110->70. It is 30% OTM
+> we need to 
+> - wait for stock recovery to 100
+> - start selling calls immediately to get money back as much as we can
+> - hold onto stock
+
+
+`strategy` 
+- buy and hold stock, then sell covered call
+- good stock 
+  - have strong support
+
+> Example, stock @ 100  
+> (1) sell 98 put for 1, if not getting assigned that week
+> (2) sell 97 put for 1, if not getting assigned that week
+> (3) sell 95 put for 2, but stock fall to 94
+> Then, we get assigned and need to purchase stock @ 95 because we sell 95 put. However, the actual cost basis = 95 - 4 (premium collected) = 91
+> Next step is sell covered calls on the stock you get assigned with
+> - agressive approach: the strike higher than stock cost basis ~ OTM
+> - conservative approach: just ITM or ATM
+> 
+
+## Modified Bull Wheel
+*** Weekly Strategy ****
+
+`strategy` sell cash secured put + covered call to get benefit either side of the market
+- if stock falls, you benefit from short call
+- if stock rises, you benefit from short put
+
+
+## Straddle - volatality spread betting developing volatility 
+*** Earning Strategy ****
+
+`Buy Straddle` buy ATM call + buy ATM put betting on **high IV** 
+- benefit from price very moving up or down 
+
+> Example, stock @ 100, to bet on both side, then buy 100 call with 3 and buy 100 put with 3
+> Now, pay 6 x 100 = 600 upfront
+> B.E. on downside = 100 - 6 = 94
+> B.E. on upside = 100 + 6 = 106
+> Then, anticipate exposive move 
+> in case of 
+> - 100->109, then 109 - 106 = 3 x 100 = 300 profit, ROI 300/600 = 50%
+> - 100->90, then 94-90 = 4 x 100 = 400 profit, ROI 400/600 = 66%
+
+
+`Sell Straddle` sell call + sell put betting on **low IV**
+- benefit from price going nowhere
+- Type
+  - `Protected Straddle` covered by open position 
+  - `Naked Straddle` NOT ALLOW !! it's unlimited
+
+
+Note: IV rises during earning week
+
+![Straddle](images/straddle.png)
+
+
+## Strangle - volatality exposion betting on news
+*** News Strategy ****
+Note: higher bet on volatility than `Straddle`
+
+`strategy` buy OTM call + buy OTM put
+Note: premium will be less than long straddle because of OTM
+
+> Example, stock @ 100, buy 105 call with 0.5 + buy 95 put with 0.5
+> Now, pay (0.5+0.5) x 100 = 100 upfront
+> B.E. on downside = 95 - 1 = 94
+> B.E. on upside = 105 + 1 = 106
+> Then, anticipate exposive move 
+> in case of 
+> - 100->107, then 107 - 106 = 1 x 100 = 100 profit, ROI 100/100 = 100%
+> - 100->93, then 94-93 = 1 x 100 = 100 profit, ROI 100/100 = 100%
+
+
+## Long Call / Buy Call 
+*** News/Earning Strategy ****
 - position = 1
 - market = bullish
 - risk/reward = limited/unlimited
@@ -497,16 +683,27 @@ as long as it stays around 50
 ![Payoff Chart](https://www.chittorgarh.com/images/screenshots/long-call-options-strategy-payoff-chart.png)
 
 
-## Protective call / Synthetic long put: Sell and Buy ATM Call
-- position = 2
-- market = bearish
-- risk/reward = limited/unlimited
-- B.E. = stock price - call premium
-![Payoff Chart](https://www.chittorgarh.com/images/screenshots/protective-call-options-strategy-payoff-chart.png)
+## Spread / Vertical
+*** Weekly Strategy / Small Account Strategy ***
+`idea` buy or sell equal amount of options on the same stock but different strike or expiry
+`Henry` diff strike, same expiry
+
+Type
+- `bull spread` profit from bull 
+- `bear spread` profit from bear
+- `credit spread` spend less than collect premium ~ collect money
+- `debit spread` spend more than collect premium  ~ spend money
 
 
-## Covered call
-- best fit with low volatality bcoz we can keep selling everyweek without risking exposure like AAL
+
+
+# Appendix: Motto
+- Spread trading is risker to lose collateral 
+  - for portfolio > 100k, not to risk > 2.5k per trade at most
+  - for portfolio < 100k, not to risk > 500 per trade at most
+- take trade on Monday/Tuesday, and recheck on Thursday/Friday
+
+
   
 # Appendix: Volatality analysis
 - high vol --> `good for selling option`
@@ -539,3 +736,16 @@ as long as it stays around 50
 - 8-Jun: PLTR @ 9, sell 6/10 exp. put 8.5 , for 0.5 
 
 
+
+
+---
+## Protective call / Synthetic long put: Sell and Buy ATM Call
+- position = 2
+- market = bearish
+- risk/reward = limited/unlimited
+- B.E. = stock price - call premium
+![Payoff Chart](https://www.chittorgarh.com/images/screenshots/protective-call-options-strategy-payoff-chart.png)
+
+
+## Covered call
+- best fit with low volatality bcoz we can keep selling everyweek without risking exposure like AAL
