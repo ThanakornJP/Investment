@@ -1,0 +1,113 @@
+import requests 
+from bs4 import BeautifulSoup
+import pandas as pd
+from datetime import datetime
+from re import sub
+from decimal import Decimal
+import json
+
+def getTickers():
+    #lines = object()
+    with open('ticker.txt', 'r') as f:
+        return f.readlines()
+    
+def getDividends(ticker):
+    headers = {
+        'authority': 'api.nasdaq.com',
+        'accept': 'application/json, text/plain, */*',
+        'accept-language': 'en-US,en;q=0.9,th;q=0.8',
+        'origin': 'https://www.nasdaq.com',
+        'referer': 'https://www.nasdaq.com/',
+        'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"macOS"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-site',
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
+    }
+
+    params = {
+        'assetclass': 'stocks',
+    }
+
+    response = requests.get('https://api.nasdaq.com/api/quote/' + ticker + '/dividends', params=params, headers=headers)
+    response_json = response.json()
+    #print(response_json)
+    #print()
+    #print(response_json.keys())
+    #print(response_json['message'])
+    #print(response_json['status'])
+    #print(response_json['data'])
+    #print()
+    response_json_data = response_json['data']
+    #print(response_json_data.keys())
+    #print(response_json_data['dividends'].keys())
+    #print(response_json_data['dividends']['headers'])
+    # print(response_json_data['dividends']['rows'])
+    dividends = response_json_data['dividends']['rows']
+    print('gg')
+    print(dividends)
+    if dividends is None:
+        return None
+    else:
+        return dividends
+
+def decode():
+    print('decode')
+
+lines = getTickers()
+dividend_table = {
+    'tick':[], 
+    'num_streak':[], 
+    'streak_start_date':[],
+    'streak_end_date':[],
+    'payout_period':[],
+    'lastest_amount':[],
+    'incremental_percentage':[],
+}
+
+for line in lines:
+    dividends = getDividends(line.strip())
+    
+    
+    if dividends is not None:        
+        print("Analyzing " + line.strip() + " ....")
+        d_lines = { 'date':[],'payout_period':[],'amount':[],'incremental_percentage': [] }
+    
+        for index, dividend in enumerate(dividends[:-1]):
+            d = datetime.strptime(dividend['exOrEffDate'],  "%m/%d/%Y")
+            previous_d = datetime.strptime(dividends[index+1]['exOrEffDate'],  "%m/%d/%Y") 
+
+            amount = float(Decimal(sub(r'[^\d.]', '', dividend['amount'])))
+            previous_amount = float(Decimal(sub(r'[^\d.]', '', dividends[index+1]['amount'])))
+            inc_step = (amount * 100 / previous_amount) - 100
+
+            num_months = abs((previous_d.year - d.year) * 12 + (previous_d.month - d.month))
+            # print('no month : ' + str(num_months))
+            if num_months > 4: break   
+
+            d_lines['date'].append(d.strftime("%m/%d/%Y"))
+            d_lines['payout_period'].append(num_months)
+            d_lines['amount'].append(amount)
+            d_lines['incremental_percentage'].append(inc_step)
+        
+        
+
+        if len(d_lines['date']) > 0:
+            dividend_table['tick'].append(line.strip())
+            dividend_table['streak_end_date'].append(datetime.strptime(dividends[0]['exOrEffDate'],  "%m/%d/%Y").strftime("%m/%d/%Y")) 
+            dividend_table['lastest_amount'].append(dividends[0]['amount'])
+            dividend_table['streak_start_date'].append(d_lines['date'][-1]) 
+            dividend_table['num_streak'].append(len(d_lines['date']))
+            dividend_table['incremental_percentage'].append(max(d_lines['incremental_percentage']))
+            dividend_table['payout_period'].append(sum(d_lines['payout_period'])/len(d_lines['payout_period']))
+        d_lines = {}
+        print(dividend_table)
+
+df = pd.DataFrame(dividend_table)
+print(df)
+
+
+
+

@@ -391,10 +391,19 @@ the more farther OTM, the less likely to be ITM, the less premium collectable
 `dividend payoff`
 
 ## fundamental analysis: to select good stock for all possible ways (module 2:0-1)
-`ROE`
+1. `Market cap` = how much is the company worth
+2. `PE ratio` = invest / return
+- it will take PE year to get you cash on cash investment
+- compare only in the same industry or in conjunction with other matrix
 
+> Note: Faster growth results in higher PE ration
+> Note: stock is valued based on all future earning discounted today and not what's just happening right now
+> Note: analyze for 1 year and see its correlation to its history; `use chart to make decision reflecting its behaviour` --- no complex model, just keep it simple
+
+3. `PS ration` `Price to Sales Ratio` = market cap / total sales (revenue) over 1 year
+   
 ---
-
+`ROE`
 `P/E`
 `Sales growth qtr over qtr`
 `EPS growth qtr over qtr`
@@ -407,12 +416,27 @@ the more farther OTM, the less likely to be ITM, the less premium collectable
 
 
 ## technical analysis: to get used to its behavior not to foresee (module 2:2-7)
-`MA`
+`Line chart` as your main chart, and use `Candlestick shart` as secondary
 
-`RSI`
+`Volume` 
+- need to see agreement between price and volume
+- `sentiment`: find consensus
+  - if price's going up with high volume and likewise, it's consensus; otherwise, it's not conclusive
+  - `gap up` `breakout` after **consolidation** is also consensus
+
+`MA`: 30d/90d 
+- see price performance past 30d and 90d.
+- if it conforms, it's consensus
+- for uptrend, ma(90) should < ma(30)
+  
+
+`RSI`: 7d
 as long as it stays around 50
+- 20/80, oversold/overbought
 
-`Bollinger`
+`Bollinger`: 20d, 2sd
+- the narrower, the lower volatility
+- give trade range 
 
 
 ## Quiz
@@ -559,13 +583,87 @@ overwriting = covered call
 - stock + option mindset: put stocks to work (module 5: 0-3)
 - weekly monthly yearly (module 5:5)
 - ROI (module 5:6)
-- entry (module 2:8 + module 5:4)
-- exit (module 2:9 + module 5:7)  
+
+### Entry (module 2:8 + module 5:4)
+
+1. `PE` = total price of company / what it earns
+- the smaller, the cheaper
+- the bigger
+- **for value stock**
+> Example, 
+> rent 10k, house 100k, then PE = 10
+> rent 10k, house 200k, then PE = 20 --> expensive
+
+2. `PS` = b
+- **for growth stock** bcoz growth company usualy has less/no earning
+
+3. moving average
+4. momentum
+5. rsi
+6. bollinger band **
+7. trends
+8. belief
+
+
+
+### exit (module 2:9 + module 5:7)  
+1. high RSI > 70
+2. oversaturated / make all time high/low too often
+3. TP point
+
+### portfolio
+1. progressive: 10-12 stocks 
+2. retire: 20+ stocks for diversity
 
 # 4. Module 6: Why writing put?
 # 5. Module 7: wheel + straddles + strangles
 # 6. Module 8: small accout secret (spread + condor)
 
+
+# Appendix: Strategy Recap
+![Basic Payoff](images/basic%20payoff.png)
+
+1. `Long Call` - bet bull
+> pay for bet "buy low, sell high"
+
+2. `Long Put` - bet bear
+> pay for bet "sell high, buy low"
+
+3. `Short Call` 
+- `Naked Call`
+> buy stock at market price, and sell it out 
+
+- `Covered Call` 
+> collect and exit higher
+> sell stock from portfolio at higher price 
+
+4. `Short Put` - insure buyer from bear 
+> collect and enter lower
+> buy stock into portfolio at lower price 
+
+
+![Spread Payoff](images/spread%20payoff.png)
+1. `Debit Spread` - bet
+
+- (1) `Bull Call Debit Spread` / `Bull Debit Spread` / `Call Debit Spread` - bet bull
+> pay less for bet "buy low, sell limited high"
+> sell call for premium to save buy leg
+> buy
+
+- (2) `Bear Debit Spread` - bet bear
+> pay less for bet "sell high, buy limited low"
+> sell call for premium to save buy leg 
+
+2. `Credit Spread` - insure
+
+- (1) `Call Credit Spread`
+> insure bull (sell call) - at strike price, we will sell 
+> instead of covered call, we buy CTM call to hedge 
+
+
+- (2) `Put Credit Spread`
+> insure bear (sell put) - at strike price, we will buy 
+> instead of naked put,  
 
 # Appendix: Strategy in Action
 `see their behaviour in 1-month and 3-month chart`
@@ -692,8 +790,6 @@ Note: premium will be less than long straddle because of OTM
 `idea` buy or sell equal amount of options on the same stock but different strike or expiry
 `Henry` diff strike, same expiry
 
-![Spread Payoff](images/spread%20payoff.png)
-
 
 #### 1. `bull spread` / `bull call debit spread` / `call debit spread`/`call debit spread` / `bull put spread` - profit from bull
    
@@ -749,6 +845,58 @@ maximize profit from beer market bet while minimizing loss
 ![Bear Put Spread Payoff](images/bear%20put%20spread%20payoff.png)
 
 
+## Iron condor
+- assume that stock goes nowhere 
+
+#### buy iron condor 
+![](images/buy%20iron%20condor%20payoff%20sample.png)
+![](images/long%20iron%20condor%20payoff.png)
+
+
+#### sell iron condor 
+*** Weekly Strategy - Henry favorite ****
+- collect premium for stock stagnant 
+![](images/sell%20iron%20condor%20payoff%20sample.png)
+![](images/short%20iron%20condor%20payoff.png)
+
+> Example, it's $500 trade
+> ![](images/iron%20condor%20order.png)
+> we don't risk $ 1,000 but $500 because it can go either way (mutually exlusive event ~ 1 event can happen at one time)
+> risk the same but collect double (from both side) if stock goes nowhere
+
+> Example, Netflix having strong support ~ 530 
+> sell put 530 for 1 (delta = -0.08 ~ 8 = way way way out of the money) + buy put 525 for 0.69 ==> collect 0.31 for far OTM (very less chance to get executed)
+
+
+# Appendix: Key takeaway
+1. buy option 
+2. sell covered call *** 
+   1. best-fit: large portfolio
+   2. warn: not work for stock's doing double/tripple like hype stock
+   3. pro: collecting premium and getting dividend while holding stock
+3. sell put ***
+   1. buffet strategy
+   2. moderate bullish strategy
+4. buy put
+   1. very bearish strategy
+5. the wheel ***
+   1. best-fit: life-long strategy
+6. sell covered straddle ***
+   1. best-fit: betting on volatality
+   2. moderate bullish strategy
+   3. sell put + covered call 
+   4. collecting from time decay
+7. strangle 
+   1. widen straddle
+8. spread ***
+   1. best-fit: grow small account
+9. iron condor **
+   1.  combination of spread
+10. rolling option ???
+    1.  repair of Terrence: closing losing position and open next expiration for more time decay
+11. poored man covered call ???
+12. leap ???
+
 # Appendix: Motto
 - Spread trading is risker to lose collateral 
   - for portfolio > 100k, not to risk > 2.5k per trade at most
@@ -784,9 +932,10 @@ maximize profit from beer market bet while minimizing loss
   - spike after IPO, sell put for their adjustment
   - sideway, sell put/call along 
 
+---
 # Appendix: Journal
 - 8-Jun: PLTR @ 9, sell 6/10 exp. put 8.5 , for 0.5 
-
+- 13-Jun: SIG @ 54, sell 6/17 exp. 56.5 put for 0.175, buy 55 put same expiry for 0.05 `result: $12.5 on 58.8 close`  `RR: 1.5x100/12.5 = 150/12.5 ~ 8.3% ` 
 
 
 
