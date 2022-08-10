@@ -949,7 +949,7 @@ maximize profit from beer market bet while minimizing loss
 ---
 # Appendix: Journal
 - 8-Jun: PLTR @ 9, sell 6/10 exp. put 8.5 , for 0.5 
-- 13-Jun: SIG @ 54, sell 6/17 exp. 56.5 put for 0.175, buy 55 put same expiry for 0.05 `result: $12.5 on 58.8 close`  `RR: 1.5x100/12.5 = 150/12.5 ~ 8.3% ` 
+- 13-Jun: SIG @ 54, sell 6/17 exp. 56.5 put for 0.175, buy 55 put same expiry for 0.05 `result: $12.5 on 58.8 close`  `RR: 12.5 / 1.5x100 = 12.5 / 150 ~ 8.3% ` 
 
 
 
