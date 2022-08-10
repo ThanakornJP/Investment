@@ -615,6 +615,20 @@ overwriting = covered call
 1. progressive: 10-12 stocks 
 2. retire: 20+ stocks for diversity
 
+`Diversification` 
+- at least 3 different industries
+  - recommend: airlines, healthcare, technology
+- at least 12 companies (5 stocks for large company) 
+
+### risk management
+`buy stock` don't risk more than 10-20% of your account
+`buy option` risk < 2.5-5%
+
+
+`reasoning` 
+- good: Tesla's dominating EV's, producing cars at a rapid rate, expanding operations and profit margins are growing
+- bad: Tesla's going to skyrocket
+
 # 4. Module 6: Why writing put?
 # 5. Module 7: wheel + straddles + strangles
 # 6. Module 8: small accout secret (spread + condor)

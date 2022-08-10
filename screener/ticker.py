@@ -42,8 +42,9 @@ def save(df, model):
             f.write(tick)
             f.write('\n')
 
-save(model(load('snp')),'tick.snp.txt')
-save(model(load('nasdaq')),'tick.nasdaq.txt')
+def reload():
+    save(model(load('snp')),'tick.snp.csv')
+    save(model(load('nasdaq')),'tick.nasdaq.csv')
 
 
 # def getTickers():

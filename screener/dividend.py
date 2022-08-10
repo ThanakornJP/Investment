@@ -163,16 +163,18 @@ def save(df, model):
     df.to_csv(model)
 
 
-# df1 = model(load('ticker.txt.1'))
-# df2 = model(load('ticker.txt.2'))
-# df3 = model(load('ticker.txt.3'))
-# df4 = model(load('ticker.txt.4'))
-# df5 = model(load('ticker.txt.4'))
-# df = pd.concat([df1, df2, df3, df4, df5], ignore_index=True)
-# save(df,'dividends.csv')
-# print(df)
-df = pd.read_csv('dividends.csv')   
-print(df.loc[ df['tick'] == 'EVLMC'])
+def reload():
+    # --- NASDAQ ---
+    df1 = model(load('tick.nasdaq.csv.1'))
+    df2 = model(load('tick.nasdaq.csv.2'))
+    df3 = model(load('tick.nasdaq.csv.3'))
+    df4 = model(load('tick.nasdaq.csv.4'))
+    df = pd.concat([df1, df2, df3, df4], ignore_index=True)
+    save(df,'dividends.nasdaq.csv')
+
+    # --- S&P 500 ---
+    #df = model(load('tick.snp.csv'))
+    #save(df,'dividends.snp.csv')
 
 
 # def getTickers(index):

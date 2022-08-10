@@ -1,5 +1,26 @@
 
+1. get all nasdaq's tick names
+2. get all snp's tick names
+   
 
+# 1. main.py - entry point 
+...
+
+
+# 2. ticker.py
+load tick for further analysis
+
+- load(string:exchange):DataFrame - get all tickers 
+- model(DataFrame:model):set - used to load executable tickers in the list 
+- reload() - save nasdaq and snp into tick.nasdaq.csv and tick.snp.csv
+- save(DataFrame:model,string:filename) - save ticker into file.csv
+
+# 3. dividend.py
+filter only consecutive earnable companies
+
+- reload() - save nasdaq and snp into dividends.csv
+.
+------------------------------------------------
 
 1. A-Basket update
    1. get all stock at least 25-year founded 

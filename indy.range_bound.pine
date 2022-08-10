@@ -1,0 +1,24 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © ThanakornJP
+
+//@version=5
+indicator("Range Indicator", overlay=true)
+// Inputs
+iv = input.float(0.5, "Implied Volatality")
+
+// Calculate SD
+sd = close * iv * 0.14085904245
+//0.14085904245 = sqrt(5/252)
+
+
+plot(close - sd, color=color.new(color.red, 40), title="1SD Low")
+plot(close + sd, color=color.new(color.red, 40), title="1SD High")
+plot(close - (2*ta.atr(20)), color=color.new(color.white, 40), title="2ATR20")
+plot(close + (2*ta.atr(20)), color=color.new(color.white, 40), title="2ATR20")
+
+[middle, upper, lower] = ta.bb(close, 20, 2)
+plot(middle, color=color.new(color.blue, 40), title="BB20 Mean", display=display.none)
+plot(upper, color=color.new(color.blue, 40), title="BB20 Upper")
+plot(lower, color=color.new(color.blue, 40), title="BB20 Lower")
+
+
